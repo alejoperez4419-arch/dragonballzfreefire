@@ -1,0 +1,255 @@
+/* =========================
+   RESET & BASE
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Russo One', sans-serif;
+  /* Degradado inspirado en el espacio/aura de combate */
+  background: radial-gradient(circle at top, #4b1200 0%, #120500 50%, #000000 100%);
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* =========================
+   BACKGROUND EFFECT
+========================= */
+.background-overlay {
+  position: fixed;
+  inset: 0;
+  /* Aura naranja/roja suave */
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(255, 102, 0, 0.15), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(0, 102, 255, 0.1), transparent 40%);
+  z-index: -1;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+.container {
+  width: 100%;
+  max-width: 420px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+.section {
+  display: none;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  animation: kiExplosion 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.section.active {
+  display: flex;
+}
+
+@keyframes kiExplosion {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+    filter: brightness(3);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+/* =========================
+   CONTENT BOX (SAIYAN ARMOR STYLE)
+========================= */
+.content-box {
+  background: rgba(20, 20, 25, 0.95);
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+  /* Borde doble estilo tecnológico/guerrero */
+  border: 3px solid #ff6600;
+  box-shadow: 
+    0 0 20px rgba(255, 102, 0, 0.4),
+    inset 0 0 15px rgba(0, 102, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* El brillo de Ki que recorre el borde */
+.content-box::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: conic-gradient(transparent, #ff6600, transparent 30%);
+  animation: rotateKi 4s linear infinite;
+  z-index: -1;
+}
+
+@keyframes rotateKi {
+  100% { transform: rotate(360deg); }
+}
+
+/* =========================
+   LOGO & TITLES
+========================= */
+.logo {
+  width: 100%;
+  margin-bottom: 26px;
+  filter: drop-shadow(0 0 15px #ffcc00);
+}
+
+h2 {
+  margin-bottom: 16px;
+  font-size: 26px;
+  color: #ffcc00; /* Amarillo Super Saiyan */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  -webkit-text-stroke: 1px #ff6600;
+  text-shadow: 3px 3px 0px #000;
+}
+
+p {
+  font-size: 15px;
+  color: #00ccff; /* Cyan estilo interfaz de Scouter */
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* =========================
+   INPUT (SCOUTER STYLE)
+========================= */
+input {
+  width: 100%;
+  padding: 16px;
+  margin-top: 12px;
+  border-radius: 4px;
+  border: 2px solid #0066ff;
+  outline: none;
+  font-size: 18px;
+  background: rgba(0, 50, 100, 0.3);
+  color: #00ffcc;
+  text-align: center;
+  font-family: 'Russo One', sans-serif;
+  transition: all 0.3s;
+}
+
+input:focus {
+  border-color: #00ffcc;
+  box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+}
+
+/* =========================
+   BUTTON (GOKU GI - ORANGE & BLUE)
+========================= */
+button {
+  margin-top: 24px;
+  width: 100%;
+  padding: 18px;
+  border-radius: 8px;
+  border: 2px solid #000;
+  font-size: 18px;
+  font-weight: 900;
+  cursor: pointer;
+  background: linear-gradient(to bottom, #ff9900 0%, #ff6600 100%);
+  color: #fff;
+  text-transform: uppercase;
+  text-shadow: 2px 2px #000;
+  box-shadow: 0 5px 0 #993300;
+  transition: all 0.1s;
+}
+
+button:hover {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #993300;
+  filter: brightness(1.2);
+}
+
+button:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+
+/* =========================
+   CARDS GRID & CARDS
+========================= */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.card {
+  background: #111;
+  border-radius: 10px;
+  padding: 5px;
+  cursor: pointer;
+  border: 2px solid #333;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.card img {
+  width: 100%;
+  display: block;
+  border-radius: 6px;
+  filter: grayscale(40%);
+}
+
+.card:hover {
+  transform: scale(1.1) rotate(2deg);
+  border-color: #ffcc00;
+  z-index: 10;
+}
+
+.card.selected {
+  border-color: #00ffcc;
+  background: #002233;
+  box-shadow: 0 0 20px #00ffcc;
+}
+
+.card.selected img {
+  filter: grayscale(0%) contrast(1.1);
+}
+
+/* =========================
+   SPINNER (KAMEHAMEHA ENERGY)
+========================= */
+.spinner {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin: 25px auto;
+  border: 5px solid rgba(255, 255, 255, 0.1);
+  border-top: 5px solid #00ccff;
+  border-bottom: 5px solid #fff;
+  box-shadow: 0 0 25px #00ccff;
+  animation: kamehameha 0.8s infinite linear;
+}
+
+@keyframes kamehameha {
+  to { transform: rotate(360deg) scale(1.1); }
+}
+
+#loadingText {
+  color: #fff;
+  text-shadow: 0 0 10px #00ccff;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 360px) {
+  .cards-grid { grid-template-columns: repeat(2, 1fr); }
+  h2 { font-size: 20px; }
+}
